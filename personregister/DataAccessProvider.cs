@@ -45,7 +45,7 @@ namespace PSQLConection.DataAccess
                 {
                     //Abra a conexão com o PgSQL                  
                     pgsqlConnection.Open();
-                    string cmdUpdate = String.Format("Update person Set name = '" + newPerson.Name + "', cpf = '" + newPerson.CPF + "', date_of_birth = '" + newPerson.BirthDate+ "', income = '"+ newPerson.Income + "' WHERE id=" + person.Id);
+                    string cmdUpdate = String.Format("Update person Set name = '" + newPerson.Name + "', cpf = '" + newPerson.CPF + "', date_of_birth = '" + newPerson.BirthDate + "', income = '" + newPerson.Income + "' WHERE id=" + person.Id);
                     using (NpgsqlCommand cmd = new NpgsqlCommand(cmdUpdate, pgsqlConnection))
                     {
                         cmd.ExecuteNonQuery();
@@ -109,12 +109,7 @@ namespace PSQLConection.DataAccess
                         NpgsqlDataReader reader = cmdSeleciona.ExecuteReader();
                         if (reader.Read())
                         {
-                            Models.Person person = new Models.Person();
-                            person.Name = reader[1].ToString();
-                            person.CPF = int.Parse(reader[3].ToString());
-                            person.BirthDate = DateTime.Parse(reader[2].ToString());
-                            person.Id = Int64.Parse(reader[0].ToString());
-                            //Console.WriteLine(reader[1].ToString());
+                            Models.Person person = InicializePerson(reader);
                             return person;
                         }
                     }
@@ -149,16 +144,7 @@ namespace PSQLConection.DataAccess
                         NpgsqlDataReader reader = cmdSeleciona.ExecuteReader();
                         while (reader.Read())
                         {
-                            Models.Person person = new Models.Person();
-                            person.Name = reader[1].ToString();
-                            person.CPF = int.Parse(reader[3].ToString());
-                            person.BirthDate = DateTime.Parse(reader[2].ToString());
-                            person.Id = Int32.Parse(reader[0].ToString());
-                            
-                            double income = 0;
-                            Double.TryParse(reader[4].ToString(), out income);
-                            person.Income = income;
-                            person.BirthDate = DateTime.Parse(reader[2].ToString());
+                            Person person = InicializePerson(reader);
                             persons.Add(person);
                         }
                     }
@@ -177,6 +163,21 @@ namespace PSQLConection.DataAccess
                 pgsqlConnection.Close();
             }
             return persons;
+        }
+
+        private static Person InicializePerson(NpgsqlDataReader reader)
+        {
+            Models.Person person = new Models.Person();
+            person.Name = reader[1].ToString();
+            person.CPF = int.Parse(reader[3].ToString());
+            person.BirthDate = DateTime.Parse(reader[2].ToString());
+            person.Id = Int32.Parse(reader[0].ToString());
+
+            double income = 0;
+            Double.TryParse(reader[4].ToString(), out income);
+            person.Income = income;
+            person.BirthDate = DateTime.Parse(reader[2].ToString());
+            return person;
         }
 
         public string GetConnectionString()

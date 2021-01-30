@@ -1,1 +1,10 @@
-<p>get-id-person works!</p>
+<h1>Get person by id</h1>
+
+<p>This component demonstrates Manage people registration integrated with .Net, ASP.Net and PSQL.</p>
+
+<p> Id: <input [(ngModel)]="id" ></p>
+<p> Name: <input [(ngModel)]="name" ></p>
+<p> CPF: <input [(ngModel)]="cpf" placeholder="00000000000" ></p>
+<p> Date of birth: <input [(ngModel)]="birthdate" ></p>
+<p>Income: <input [(ngModel)]="income"></p>
+<button (click)="update()">Update</button><button (click)="getId()">Get by Id</button>

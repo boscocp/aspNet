@@ -30,9 +30,11 @@ namespace personregister.Controllers
 
         // GET: api/Person/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public Person Get(int id)
         {
-            return "value";
+            PSQLConection.DataAccess.IDataAccessProvider dbPerson = new PSQLConection.DataAccess.DataAccessProvider();
+            Person person = dbPerson.GetPersonSingleRecord(id);
+            return person;
         }
 
         // POST: api/Person
@@ -45,14 +47,20 @@ namespace personregister.Controllers
 
         // PUT: api/Person/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Person personJSON)
         {
+            PSQLConection.DataAccess.IDataAccessProvider dbPerson = new PSQLConection.DataAccess.DataAccessProvider();
+            Person person = dbPerson.GetPersonSingleRecord(id);
+            dbPerson.UpdatePersonRecord(person, personJSON);
         }
 
         // DELETE: api/Person/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            PSQLConection.DataAccess.IDataAccessProvider dbPerson = new PSQLConection.DataAccess.DataAccessProvider();
+            Person person = dbPerson.GetPersonSingleRecord(id);
+            dbPerson.DeletePersonRecord(person);
         }
     }
 }

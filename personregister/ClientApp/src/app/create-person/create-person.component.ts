@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { Person } from '../person-crud/person-crud.component';
-import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-create-person',
@@ -28,8 +27,6 @@ export class CreatePersonComponent {
     };
 
     this.http.post<Person>(this.baseUrl + 'api/Person',person).subscribe(_ => {
-      console.log("cadastrou "+ person.name);
-      console.log(console.log(JSON.stringify(person)));
     }, error => console.error(error));
   }
 }
