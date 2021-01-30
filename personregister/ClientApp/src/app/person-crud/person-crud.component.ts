@@ -21,5 +21,5 @@ export interface Person {
   name: string;
   cpf: number;
   income: number;
-  birthdate: string;
+  birthDate: string;
 }

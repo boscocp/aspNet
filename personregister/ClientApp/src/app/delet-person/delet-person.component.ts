@@ -20,7 +20,7 @@ export class DeletPersonComponent {
     this.http.get<Person>(this.baseUrl + 'api/Person/'+this.id).subscribe(result => {
       this.name = result.name;
       this.cpf = result.cpf;
-      this.birthdate = result.birthdate;
+      this.birthdate = result.birthDate;
       this.income = result.income;
     }, error => console.error(error));
   }

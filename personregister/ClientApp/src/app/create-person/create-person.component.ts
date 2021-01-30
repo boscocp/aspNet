@@ -11,7 +11,7 @@ export class CreatePersonComponent {
 
   name: string = '';
   cpf: string = '0';
-  birthdate: string = '';
+  birthDate: string = '';
   income: string = '0';
 
   constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string) {
@@ -22,7 +22,7 @@ export class CreatePersonComponent {
     const person: Person = {
       name: this.name,
       cpf: Number.parseInt(this.cpf),
-      birthdate: this.birthdate,
+      birthDate: this.birthDate,
       income: Number.parseFloat(this.income)
     };
 

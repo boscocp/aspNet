@@ -3,9 +3,9 @@
 <p>This component demonstrates Manage people registration integrated with .Net, ASP.Net and PSQL.</p>
 
 <p> Id: <input [(ngModel)]="id" ></p>
-<p> Name: <input [(ngModel)]="name" ></p>
-<p> CPF: <input [(ngModel)]="cpf" placeholder="00000000000" ></p>
-<p> Date of birth: <input [(ngModel)]="birthdate" ></p>
-<p>Income: <input [(ngModel)]="income"></p>
+<p> Name: {{name}}</p>
+<p> CPF: {{cpf}}</p>
+<p> Date of birth: {{birthdate}}</p>
+<p>Income: {{income}}</p>
 <button (click)="delete()">Delet</button><button (click)="getId()">Get by Id</button>
 
