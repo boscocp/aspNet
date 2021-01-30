@@ -37,6 +37,7 @@ namespace personregister.Controllers
         [HttpPost]
         public void Post([FromBody] string value)
         {
+            
         }
 
         // PUT: api/Person/5

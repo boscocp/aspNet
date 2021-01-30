@@ -10,6 +10,9 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { PersonCRUDComponent } from './person-crud/person-crud.component';
+import { CreatePersonComponent } from './create-person/create-person.component';
+import { DeletPersonComponent } from './delet-person/delet-person.component';
+import { GetIdPersonComponent } from './get-id-person/get-id-person.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { PersonCRUDComponent } from './person-crud/person-crud.component';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    PersonCRUDComponent
+    PersonCRUDComponent,
+    CreatePersonComponent,
+    DeletPersonComponent,
+    GetIdPersonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -26,9 +32,12 @@ import { PersonCRUDComponent } from './person-crud/person-crud.component';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
+      // { path: 'counter', component: CounterComponent },
+      // { path: 'fetch-data', component: FetchDataComponent },
       { path: 'person-crud', component: PersonCRUDComponent },
+      { path: 'create-person', component: CreatePersonComponent },
+      { path: 'delet-person', component: DeletPersonComponent },
+      { path: 'get-id-person', component: GetIdPersonComponent },
     ])
   ],
   providers: [],
