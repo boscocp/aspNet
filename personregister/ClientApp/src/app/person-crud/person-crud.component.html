@@ -1,0 +1,26 @@
+<h1 id="tableLabel">Manage people registration</h1>
+
+<p>This component demonstrates Manage people registration integrated with .Net, ASP.Net and PSQL.</p>
+
+<p *ngIf="!persons"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="persons">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>CPF</th>
+      <th>Income</th>
+      <th>Date of birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let person of persons">
+      <td>{{ person.id }}</td>
+      <td>{{ person.name }}</td>
+      <td>{{ person.cpf }}</td>
+      <td>{{ person.income }}</td>
+      <td>{{ person.birthdate }}</td>
+    </tr>
+  </tbody>
+</table>
