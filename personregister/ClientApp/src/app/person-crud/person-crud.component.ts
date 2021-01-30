@@ -16,8 +16,8 @@ export class PersonCRUDComponent {
   }
 }
 
-interface Person {
-  id: bigint;
+export interface Person {
+  id?: bigint;
   name: string;
   cpf: number;
   income: number;

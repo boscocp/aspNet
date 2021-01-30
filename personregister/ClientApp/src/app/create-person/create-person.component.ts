@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Person } from '../person-crud/person-crud.component';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-create-person',
@@ -7,20 +9,28 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./create-person.component.css']
 })
 export class CreatePersonComponent {
-  public person: Person;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    // http.post<Person>(baseUrl + 'api/Person').subscribe(result => {
-    //   this.person = result;
-    // }, error => console.error(error));  
+  name: string = '';
+  cpf: string = '0';
+  birthdate: string = '';
+  income: string = '0';
+
+  constructor(public http: HttpClient, @Inject('BASE_URL') public baseUrl: string) {
+
   }
 
+  create(): void {
+    const person: Person = {
+      name: this.name,
+      cpf: Number.parseInt(this.cpf),
+      birthdate: this.birthdate,
+      income: Number.parseFloat(this.income)
+    };
+
+    this.http.post<Person>(this.baseUrl + 'api/Person',person).subscribe(_ => {
+      console.log("cadastrou "+ person.name);
+      console.log(console.log(JSON.stringify(person)));
+    }, error => console.error(error));
+  }
 }
-  
-interface Person {
-  id: bigint;
-  name: string;
-  cpf: number;
-  income: number;
-  birthdate: string;
-}
+

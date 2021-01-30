@@ -1,32 +1,12 @@
-    <div class="content">      
-      <div id="create-person">
-        <form method="post" action=""> 
-          <h1>Register Person</h1> 
-          
-          <p> 
-            <label for="nome_cad">Name</label>
-            <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="Luiz Augusto" />
-          </p>
-          
-          <p> 
-            <label for="date-of-birth">Date of birth</label>
-            <input id="date-of-birth" name="date-of-birth" required="required" type="date" placeholder="09/04/1988"/> 
-          </p>
-          
-          <p> 
-            <label for="cpf">CPF</label>
-            <input id="cpf" name="cpf" required="required" type="number" placeholder="12346666"/>
-          </p>
+<h1>Create person</h1>
 
-          <p> 
-            <label for="cpf">Income</label>
-            <input id="income" name="income" required="required" type="number" placeholder="12346666"/>
-          </p>
-          
-          <p> 
-            <input type="submit" value="Submit"/> 
-          </p>          
-        </form>
-      </div>
-    </div>
+<p>This component demonstrates Create of person integrated with .Net, ASP.Net and PSQL.</p>
+
+  <p> Name:
+    <input [(ngModel)]="name" placeholder="Bosco Pereira" >
+  </p>
+  <p> CPF: <input [(ngModel)]="cpf" placeholder="00000000000" ></p>
+  <p> Date of birth: <input [(ngModel)]="birthdate" placeholder="2015-05-16T05:50:06" ></p>
+  <p>Income: <input [(ngModel)]="income" placeholder="1000" ></p>
+  <button (click)="create()">Create</button>
 

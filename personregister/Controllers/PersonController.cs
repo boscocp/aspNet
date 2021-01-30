@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PSQLConection.Models;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace personregister.Controllers
 {
@@ -21,7 +23,7 @@ namespace personregister.Controllers
             persons = dbPerson.GetPersonRecords();
             foreach (Person person in persons)
             {
-                Console.WriteLine(person.Name+person.Id+" income "+person.Income+" birth "+person.BirthDate);
+                Console.WriteLine(person.Name + person.Id + " income " + person.Income + " birth " + person.BirthDate);
             }
             return persons;
         }
@@ -35,9 +37,10 @@ namespace personregister.Controllers
 
         // POST: api/Person
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Person personJSON)
         {
-            
+            PSQLConection.DataAccess.IDataAccessProvider dbPerson = new PSQLConection.DataAccess.DataAccessProvider();
+            dbPerson.AddPersonRecord(personJSON);
         }
 
         // PUT: api/Person/5
